@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.transaction.Transactional;
 import java.util.List;
 
+// Controller
+// URL과 실행함수를 매핑
+// 비즈니스 로직이 있는 service를 호출하여 비즈니스 로직 처리
+// 반환할 템플릿을 정의 및 json등으로 응답
+
 @Controller
 public class BoardController {
 

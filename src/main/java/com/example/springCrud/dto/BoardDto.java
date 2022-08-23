@@ -6,6 +6,8 @@ import lombok.*;
 import javax.swing.text.html.parser.Entity;
 import java.time.LocalDateTime;
 
+// controller와 service간에 주고 받을 객체를 정의하며, 최종적으로는 view에 뿌려줄 객체
+// Entity와 속성이 같을 수 있으나, 여러 service를 거쳐야 하는 경우 dto의 몸집은 더커짐
 @Getter
 @Setter
 @ToString
