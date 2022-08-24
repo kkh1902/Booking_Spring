@@ -24,6 +24,7 @@ public class BoardController {
         this.boardService = boardService;
     }
 
+    //메인페이지
     @GetMapping("/")
     public String List(Model model , @RequestParam(value = "page", defaultValue = "1") Integer pageNum) {
         List<BoardDto> boardDtoList = boardService.getBoardList(pageNum);
@@ -36,17 +37,20 @@ public class BoardController {
         return "board/list.html";
     }
 
+    // 작성페이지
     @GetMapping("/post")
     public String write() {
         return "board/write.html";
     }
 
+    // 수정
     @PostMapping("post")
     public String write(BoardDto boardDto) {
         boardService.savePost(boardDto);
         return "redirect:/";
     }
 
+    //상세페이지
     @GetMapping("/post/{no}")
     public String detail(@PathVariable("no") Long id, Model model) {
         BoardDto boardDto = boardService.getPost(id);
@@ -54,6 +58,7 @@ public class BoardController {
         return "board/detail.html";
     }
 
+    //수정 페이지
     @GetMapping("/post/edit/{no}")
     public String edit(@PathVariable("no") Long id ,Model model) {
         BoardDto boardDto = boardService.getPost(id);
@@ -62,12 +67,15 @@ public class BoardController {
         return "board/update";
     }
 
+    //수정
     @PutMapping("/post/edit/{no}")
     public String update(BoardDto boardDto) {
         boardService.savePost(boardDto);
         return "redirect:/";
     }
 
+    //삭제
+    // pathVariable url에서 변수를 받아 씀 requestparams 느낌으로(node)
     @DeleteMapping("/post/{no}")
     public String delete(@PathVariable("no") Long id) {
         boardService.deletePost(id);
@@ -75,6 +83,8 @@ public class BoardController {
         return "redirect:/";
     }
 
+    //검색
+    // reqbody느낌으로 받아서 사용
     @GetMapping("/board/search")
     public String search(@RequestParam(value= "keyword") String keyword, Model model) {
         List<BoardDto> boardDtoList = boardService.searchPosts(keyword);

@@ -31,11 +31,13 @@ public class BoardService {
         this.boardRepository = boardRepository;
     }
 
+    // 저장하기
     @Transactional
     public Long savePost(BoardDto boardDto) {
         return boardRepository.save(boardDto.toEntity()).getId();
     }
 
+    // 게시글 정보 조회
     @Transactional
     public List<BoardDto> getBoardList(Integer pageNum) {
 
@@ -55,6 +57,7 @@ public class BoardService {
         return boardDtoList;
     }
 
+    // 게시글 등록
     @Transactional
     public BoardDto getPost(Long id) {
         Optional<Board> boardWrapper = boardRepository.findById(id);
